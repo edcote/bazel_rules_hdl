@@ -13,6 +13,7 @@
 # limitations under the License.
 
 load("@rules_pkg//:pkg.bzl", "pkg_tar")
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 
 # Place and Route tool package.
 package(
@@ -25,4 +26,30 @@ pkg_tar(
     srcs = ["@org_theopenroadproject//:openroad"],
     include_runfiles = True,
     strip_prefix = "./",
+)
+
+bzl_library(
+    name = "build_defs_bzl",
+    srcs = ["build_defs.bzl"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":open_road_bzl",
+        ":private_bzl",
+        "//pdk:open_road_configuration_bzl",
+        "//synthesis:bzl",
+    ],
+)
+
+bzl_library(
+    name = "open_road_bzl",
+    srcs = ["open_road.bzl"],
+    visibility = ["//visibility:private"],
+    deps = ["//synthesis:bzl"],
+)
+
+bzl_library(
+    name = "private_bzl",
+    srcs = glob(["private/*.bzl"]),
+    visibility = ["//visibility:private"],
+    deps = [":open_road_bzl"],
 )
