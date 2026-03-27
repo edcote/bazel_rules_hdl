@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
 package(
     default_applicable_licenses = ["//:package_license"],
     default_visibility = ["//visibility:private"],
 )
-
-load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 
 exports_files(["build_defs.bzl"])
 

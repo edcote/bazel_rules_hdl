@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@rules_pkg//:pkg.bzl", "pkg_tar")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
 
 # Place and Route tool package.
 package(
